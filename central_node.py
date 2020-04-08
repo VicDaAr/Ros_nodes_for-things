@@ -16,6 +16,7 @@ class Central_node:
 
         #Publishers
         #pub_... = rospy.Publisher('Topic', String, queue_size=10)
+
         #END - Publishers-------------------------------------------------
 
         #Subscribers
