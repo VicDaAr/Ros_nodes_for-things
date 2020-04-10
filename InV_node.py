@@ -5,10 +5,11 @@ from std_msgs.msg import String
 import std_msgs
 
 
-class Central_node:
+class InV_node:
     def __init__(self):
         #variables
         self.received_coordinates = ([None,None,None,None,None,None])
+
         #END - variables ----------------------------------------------
 
         #init_node
@@ -16,17 +17,11 @@ class Central_node:
         rate = rospy.Rate(10)  # 100hz update rate.
         #END - init_node--------------------------------------------------
 
-        #Publishers
-        #pub_... = rospy.Publisher('Topic', String, queue_size=10)
-
-        self.inV_pub = rospy.Publisher('iiwa_coordinates', String, queue_size=10) #send iiwa coordinates in the iiwa_coordinates topic
-
-        #END - Publishers-------------------------------------------------
 
         #Subscribers
         #sub_... = rospy.Subscriber("Topic", String, self.callback)
 
-        self.sub_test = rospy.Subscriber('connection', String, self.test_callback)
+        self.inV_sub = rospy.Subscriber('iiwa_coordinates', String, self.save_value)
 
         #END - Subscribers------------------------------------------------
 
@@ -34,19 +29,12 @@ class Central_node:
     def callback(self,data): #data is the messege subscriber received
         return
 
-    def inv_cord_callback(self,data): #Temporary solution, immediately send message to inV_Node
-        self.inV_publish(data.data)
+    def save_value(self,data): #Temporary solution, immediately send message to inV_Node
+        data.data
 
-    def test_callback(self,data):
-        print(data.data)
     #END - Callback---------------------------------------------------
 
-    #publish function for publishers
-    def inV_publish(self, message):
-        self.inV_pub.publish(message)
-
-    #END - publish-----------------------------------------------------
 
 if __name__ == '__main__':
-    c_node = Central_node()
+    c_node = InV_node()
     rospy.spin()
