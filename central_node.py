@@ -16,6 +16,9 @@ class Central_node:
 
         #Publishers
         #pub_... = rospy.Publisher('Topic', String, queue_size=10)
+
+        self.inV_pub = rospy.Publisher('iiwa_coordinates', String, queue_size=10) #send iiwa coordinates in the iiwa_coordinates topic
+
         #END - Publishers-------------------------------------------------
 
         #Subscribers
