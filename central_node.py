@@ -6,7 +6,7 @@ from std_msgs.msg import String
 class Central_node:
     def __init__(self):
         #variables
-        self.received_coordinates = ([None,None,None,None,None,None])
+        self.received_coordinates = ''
         #END - variables ----------------------------------------------
 
         #init_node
@@ -21,14 +21,17 @@ class Central_node:
         #Subscribers
         #sub_... = rospy.Subscriber("Topic", String, self.callback)
         sub_test = rospy.Subscriber('connection', String, self.callback_test)
+        iiwa_sub = rospy.Subscriber('coordinates_iiwa', String, self.iiwa_callback)
         #END - Subscribers------------------------------------------------
 
     #callbacks for subscribers
-    def callback(self,data): #data is the messege subscriber received
-        return
+    #def callback(self,data): #data is the messege subscriber received
+        #return
 
     def callback_test(self,data):
-        print(data)
+        print(data.data)
+    def iiwa_callback(self,data):
+        print(data.data)
     #END - Callback---------------------------------------------------
 
 if __name__ == '__main__':
