@@ -17,7 +17,7 @@ class Central_node:
         #Publishers
         #pub_... = rospy.Publisher('Topic', String, queue_size=10)
 
-        self.inV_pub = rospy.Publisher('iiwa_coordinates', String, queue_size=10) #send iiwa coordinates in the iiwa_coordinates topic
+        self.inV_pub = rospy.Publisher('coordinates_inV', String, queue_size=10) #send iiwa coordinates in the iiwa_coordinates topic
 
         #END - Publishers-------------------------------------------------
 
@@ -34,8 +34,17 @@ class Central_node:
     def callback_test(self,data):
         print(data.data)
     def iiwa_callback(self,data):
+        self.inV_publish(data.data)
         print(data.data)
+
     #END - Callback---------------------------------------------------
+
+    #publish function for publishers
+    def inV_publish(self, message):
+        self.inV_pub.publish(message)
+
+    #END - publish-----------------------------------------------------
+
 
 if __name__ == '__main__':
     c_node = Central_node()
