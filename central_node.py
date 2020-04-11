@@ -11,7 +11,7 @@ class Central_node:
 
         #init_node
         rospy.init_node('central_node', anonymous=False)
-        rate = rospy.Rate(10)  # 100hz update rate.
+        rate = rospy.Rate(10)  # 10hz update rate.
         #END - init_node--------------------------------------------------
 
         #Publishers
